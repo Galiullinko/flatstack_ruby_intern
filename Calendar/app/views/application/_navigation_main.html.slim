@@ -1,0 +1,7 @@
+ul.left
+  - if user_signed_in?
+    - if request.env['PATH_INFO'] == '/subscribed_events'
+      = active_link_to "All events", events_path, active: :exclusive, wrap_tag: :li
+    - else
+      = active_link_to "Subscribed events", subscribed_events_path, active: :exclusive, wrap_tag: :li
+

@@ -1,0 +1,33 @@
+- if @policy.private?
+  - if !@policy.own?
+    - controller.redirect_to root_path, notice: 'You are not allowed to see this event'
+.show-item
+  .well.event.form-horizontal
+    .control-group
+      label.control-label
+        | Name
+      .controls
+        .input-xlarge.uneditable-input.string.span7
+          = @event.name
+    .control-group
+      label.control-label
+        | Start time
+      .controls
+        .input-xlarge.uneditable-input.datetime.span7
+          = @event.start_time
+  .form-actions
+    - if @policy.own?
+      = link_to(edit_event_path(@event), class: 'btn btn-primary') do
+        i.fi-pencil
+        | Edit
+    '  or
+    = link_to 'Back', :back
+    - if @policy.own?
+      '  or
+      = link_to 'Delete', event_path(@event), method: 'delete'
+    br
+    - if !@policy.subscribed?
+      = link_to 'Subscribe', event_subscribe_path(@event)
+    - else
+      = link_to 'Unsubscribe', event_unsubscribe_path(@event)
+script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57554f0223467914"

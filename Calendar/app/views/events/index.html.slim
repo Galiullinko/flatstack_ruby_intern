@@ -1,0 +1,8 @@
+.row
+  .columns
+    = render partial: "calendar", locals: {events: @events}
+    br
+    = link_to "Subscribed events", subscribed_events_path
+    br
+
+

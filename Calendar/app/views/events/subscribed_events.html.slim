@@ -1,0 +1,9 @@
+.row
+  .columns
+    = month_calendar events: @events do |date, meetings|
+      = date
+      - meetings.each do |meeting|
+        = link_to meeting.name, meeting
+    = link_to "Create new event", new_event_path
+    br
+    = link_to "All events", events_path
